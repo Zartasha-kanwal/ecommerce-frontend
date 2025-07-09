@@ -1,4 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
+import { API_BASE_URL } from ".././config";
+
+
+
 
 export const ShopContext = createContext(null);
 
@@ -15,7 +19,7 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
+    fetch(`${API_BASE_URL}/allproducts`)
       .then((response) => response.json())
       .then((data) => {
         console.log("Fetched data:", data);
@@ -26,7 +30,7 @@ const ShopContextProvider = (props) => {
       });
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/getcart", {
+      fetch(`${API_BASE_URL}/getcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -47,7 +51,7 @@ const ShopContextProvider = (props) => {
     }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch(`${API_BASE_URL}/addtocart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -69,7 +73,7 @@ const ShopContextProvider = (props) => {
     }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch(`${API_BASE_URL}/removefromcart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",

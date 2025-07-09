@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Items/Item";
+import { API_BASE_URL } from "../../config";
 
 export default function Popular() {
 
@@ -7,7 +8,7 @@ export default function Popular() {
 
 
 useEffect(() => {
-  fetch('http://localhost:4000/popularinwomen')
+  fetch(`${API_BASE_URL}/popularinwomen`)
     .then((response) => response.json())
     .then((data) => setPopularProducts(data))
     .catch((err) => {

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Item from "../Items/Item";
+import { API_BASE_URL } from "../../config";
+
 
 export default function Newcollection() {
+
 
  const [newCollection,setNewCollection]=useState([]);
 
  useEffect(()=>{
-  fetch('http://localhost:4000/newcollections')
+  fetch(`${API_BASE_URL}/newcollections`)
   .then((response)=>response.json())
   .then((data)=>setNewCollection(data))
 
