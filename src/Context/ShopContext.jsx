@@ -18,31 +18,35 @@ const ShopContextProvider = (props) => {
   const [all_product, setAll_Product] = useState([]);
   const [cartItems, setCartItems] = useState(getDefaultCart());
 
-  useEffect(() => {
-    fetch(`${API_BASE_URL}allproducts`)
+ useEffect(() => {
+  fetch(`${API_BASE_URL}allproducts`)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Fetched data:", data);
+      setAll_Product(data);
+    })
+    .catch((err) => {
+      console.error("Fetch error:", err);
+    });
+
+  if (localStorage.getItem("auth-token")) {
+    fetch(`${API_BASE_URL}getcart`, {
+      method: "GET", // ✅ correct method for /getcart
+      headers: {
+        "auth-token": localStorage.getItem("auth-token"),
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Fetched data:", data);
-        setAll_Product(data);
+        console.log("Fetched cart from backend:", data);
+        if (data.cartItems) {
+          setCartItems(data.cartItems); // ✅ expects { cartItems: { ... } }
+        }
       })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-      });
+      .catch((err) => console.error("Get cart error:", err));
+  }
+}, []);
 
-    if (localStorage.getItem("auth-token")) {
-      fetch(`${API_BASE_URL}getcart`, {
-        method: "POST",
-        headers: {
-          Accept: "application/form-data",
-          "auth-token": `${localStorage.getItem("auth-token")}`,
-          "Content-Type": "application/json",
-        },
-        body: "",
-      })
-        .then((response) => response.json())
-        .then((data) => setCartItems(data));
-    }
-  }, []);
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({
