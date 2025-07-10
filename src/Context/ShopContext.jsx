@@ -29,22 +29,19 @@ const ShopContextProvider = (props) => {
         console.error("Fetch error:", err);
       });
 
-   if (localStorage.getItem("auth-token")) {
-  fetch(`${API_BASE_URL}getcart`, {
-    method: "GET",
-    headers: {
-      "auth-token": localStorage.getItem("auth-token"),
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.cartItems) {
-        setCartItems(data.cartItems); // Make sure this matches your backend response
-      }
-    })
-    .catch((err) => console.error("Get cart error:", err));
-}
-
+    if (localStorage.getItem("auth-token")) {
+      fetch(`${API_BASE_URL}getcart`, {
+        method: "POST",
+        headers: {
+          Accept: "application/form-data",
+          "auth-token": `${localStorage.getItem("auth-token")}`,
+          "Content-Type": "application/json",
+        },
+        body: "",
+      })
+        .then((response) => response.json())
+        .then((data) => setCartItems(data));
+    }
   }, []);
 
   const addToCart = (itemId) => {
@@ -54,7 +51,7 @@ const ShopContextProvider = (props) => {
     }));
 
     if (localStorage.getItem("auth-token")) {
-      fetch(`${API_BASE_URL}/addtocart`, {
+      fetch(`${API_BASE_URL}addtocart`, {
         method: "POST",
         headers: {
           Accept: "application/form-data",
