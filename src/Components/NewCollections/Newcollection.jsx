@@ -9,7 +9,7 @@ export default function Newcollection() {
  const [newCollection,setNewCollection]=useState([]);
 
  useEffect(()=>{
-  fetch(`${API_BASE_URL}/newcollections`)
+  fetch(`${API_BASE_URL}newcollections`)
   .then((response)=>response.json())
   .then((data)=>setNewCollection(data))
 

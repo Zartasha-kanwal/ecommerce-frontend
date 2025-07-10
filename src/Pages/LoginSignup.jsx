@@ -15,7 +15,7 @@ export default function LoginSignup() {
   const login = async () => {
     console.log("Login function Executed", formData);
     let responseData;
-    await fetch('http://localhost:4000/login',{
+   await fetch('https://ecommerce-backend-production-a939.up.railway.app/login', {
       method :'POST',
       headers:{
         Accept:'application/form-data',
@@ -39,7 +39,7 @@ export default function LoginSignup() {
     console.log("Sign Up function Executed", formData);
 
     let responseData;
-    await fetch('http://localhost:4000/signup',{
+    await fetch('https://ecommerce-backend-production-a939.up.railway.app/signup', {
       method :'POST',
       headers:{
         Accept:'application/form-data',

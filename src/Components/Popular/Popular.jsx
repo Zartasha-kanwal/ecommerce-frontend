@@ -8,7 +8,7 @@ export default function Popular() {
 
 
 useEffect(() => {
-  fetch(`${API_BASE_URL}/popularinwomen`)
+  fetch(`${API_BASE_URL}popularinwomen`)
     .then((response) => response.json())
     .then((data) => setPopularProducts(data))
     .catch((err) => {
