@@ -1,4 +1,4 @@
-# 🛒 E-Commerce Frontend
+# 🛒 Full-Stack E-Commerce Webpage
 ![Dashboard Screenshot](Ecommerce.png)
 ### About Project
 A responsive, modern frontend for an e-commerce web application, built using **React.js**, **Tailwind CSS**, and  integrated with **Axios** for API communication.
