@@ -1,5 +1,6 @@
 # 🛒 E-Commerce Frontend
-
+![Dashboard Screenshot](Ecommerce.png)
+### About Project
 A responsive, modern frontend for an e-commerce web application, built using **React.js**, **Tailwind CSS**, and  integrated with **Axios** for API communication.
 
 This project connects to a backend server (e.g., [ecommerce-backend](https://github.com/Zartasha-kanwal/ecommerce-backend)) and allows users to browse products, manage a shopping cart, register/login.
